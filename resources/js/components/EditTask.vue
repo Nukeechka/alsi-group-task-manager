@@ -82,6 +82,7 @@
 </template>
 <script>
 import axios from "axios";
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
     data() {
@@ -91,8 +92,21 @@ export default {
     },
 
     async created() {
-        const response = await axios.get(`/api/tasks/${this.$route.params.id}`);
-        this.task = response.data;
+        try {
+            const response = await axios.get(
+                `/api/tasks/${this.$route.params.id}`
+            );
+            if (response.status === 200) {
+                this.task = response.data;
+            }
+        } catch (error) {
+            notify({
+                title: "Error",
+                text: error.message,
+                type: "error",
+            });
+            console.log(error);
+        }
     },
 
     methods: {

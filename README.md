@@ -57,6 +57,8 @@ git clone https://github.com/nukeechka/alsi-group-task-manager.git
 cd alsi-group-task-manager
 ```
 
+(Возможно надо будет поменять в .env DB_HOST на название контейнера Docker)
+
 ### Шаг 2: Сборка и запуск контейнеров
 
 ```sh
